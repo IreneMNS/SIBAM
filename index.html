@@ -1,0 +1,751 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SIG Titik Rawan Banjir Samarinda</title>
+    <!-- <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script> -->
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <!-- File CSS tambahan -->
+    <link rel="stylesheet" href="style.css" />
+</head>
+<body class="bg-gray-50 min-h-screen">
+    <!-- Floating Navbar -->
+    <nav class="floating-navbar fixed top-4 left-1/2 transform -translate-x-1/2 z-50 px-8 py-4 rounded-full">
+        <div class="flex items-center space-x-8">
+            <div class="flex items-center space-x-2">
+                <div class="w-8 h-8 bg-blue-600 rounded-full flex items-center justify-center">
+                    <span class="text-white font-bold text-sm">SIG</span>
+                </div>
+                <span class="font-bold text-gray-800">Flood Risk</span>
+            </div>
+            <div class="flex space-x-6">
+                <a href="#home" class="text-gray-700 hover:text-blue-600 font-medium transition-colors cursor-pointer" onclick="scrollToSection('home')">Home</a>
+                <a href="https://irenemns.github.io/BANSAM/#11/-0.5194/117.2053" target="_blank" class="text-gray-700 hover:text-blue-600 font-medium transition-colors cursor-pointer">See Fullscreen Map</a>
+                <a href="https://www.instagram.com/irnmiraaj13/" target="_blank" class="text-gray-700 hover:text-blue-600 font-medium transition-colors cursor-pointer" onclick="scrollToSection('contact')">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div id="home" class="pt-24 px-6">
+        <!-- Header -->
+        <div class="text-center mb-12">
+            <h1 class="text-4xl font-bold text-gray-800 mb-4">Sistem Informasi Geografis</h1>
+            <h2 class="text-2xl text-gray-600 mb-2">Titik Rawan Banjir Samarinda</h2>
+            <p class="text-gray-500 max-w-2xl mx-auto">Pantau dan kelola informasi titik-titik rawan banjir di Kota Samarinda untuk meningkatkan kesiapsiagaan bencana</p>
+        </div>
+
+<!-- Main Dashboard -->
+<div class="max-w-7xl mx-auto">
+    
+    <!-- Grid: Map & Risk Data -->
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-8">
+        
+        <!-- Card: Map -->
+        <div class="lg:col-span-2 bg-white rounded-xl shadow-lg p-6 card-hover">
+            <h3 class="text-xl font-semibold text-gray-800 mb-4">Peta Interaktif Titik Rawan Banjir</h3>
+            <iframe
+              src="https://irenemns.github.io/BANSAM/#11/-0.5194/117.2053"
+              class="w-full h-[620px] border rounded-md"
+              allowfullscreen
+            ></iframe>
+        </div>
+
+        <!-- Card: Risk Data -->
+        <div class="bg-white rounded-xl shadow-lg p-6 card-hover">
+            <h3 class="text-xl font-semibold text-gray-800 mb-4">Data Tingkat Kerawanan</h3>
+            
+            <div class="space-y-3 mb-6">
+                <div class="risk-high p-3 rounded-lg flex justify-between">
+                    <span class="font-medium">Sangat Rawan</span>
+                    <span class="font-bold">9 Lokasi</span>
+                </div>
+                <div class="risk-medium p-3 rounded-lg flex justify-between">
+                    <span class="font-medium">Cukup Rawan</span>
+                    <span class="font-bold">9 Lokasi</span>
+                </div>
+                <div class="risk-low p-3 rounded-lg flex justify-between">
+                    <span class="font-medium">Rawan</span>
+                    <span class="font-bold">28 Lokasi</span>
+                </div>
+            </div>
+
+            <h4 class="text-lg font-semibold text-gray-800 mb-3">Kecamatan Rawan Banjir</h4>
+            <div class="space-y-2 text-sm">
+                <div class="flex justify-between p-2 risk-low rounded">
+                    <span>Sungai Kunjang</span>
+                    <span class="font-semibold">Rawan</span>
+                </div>
+                <div class="flex justify-between p-2 risk-high rounded">
+                    <span>Sambutan</span>
+                    <span class="font-semibold">Sangat Rawan</span>
+                </div>
+                <div class="flex justify-between p-2 risk-low rounded">
+                    <span>Samarinda Ulu</span>
+                    <span class="font-semibold">Rawan</span>
+                </div>
+                <div class="flex justify-between p-2 risk-low rounded">
+                    <span>Palaran</span>
+                    <span class="font-semibold">Rawan</span>
+                </div>
+                <div class="flex justify-between p-2 risk-high rounded">
+                    <span>Loa Janan Ilir</span>
+                    <span class="font-semibold">Sangat Rawan</span>
+                </div>
+                <div class="flex justify-between p-2 risk-high rounded">
+                    <span>Samarinda Utara</span>
+                    <span class="font-semibold">Sangat Rawan</span>
+                </div>
+                <div class="flex justify-between p-2 risk-low rounded">
+                    <span>Samarinda Kota</span>
+                    <span class="font-semibold">Rawan</span>
+                </div>
+                <div class="flex justify-between p-2 risk-low rounded">
+                    <span>Samarinda Ilir</span>
+                    <span class="font-semibold">Rawan</span>
+                </div>
+                <div class="flex justify-between p-2 risk-low rounded">
+                    <span>Samarinda Seberang</span>
+                    <span class="font-semibold">Rawan</span>
+                </div>
+                <div class="flex justify-between p-2 risk-medium rounded">
+                    <span>Sungai Pinang</span>
+                    <span class="font-semibold">Cukup Rawan</span>
+                </div>
+            </div>
+        </div>
+    </div> <!-- ← ini penting! penutup grid -->
+
+    <!-- Card: Search Bar -->
+    <div class="bg-white rounded-xl shadow-lg p-6 mb-8 card-hover">
+        <div class="flex items-center space-x-4">
+            <div class="flex-1">
+                <input 
+                    type="text" 
+                    id="searchInput"
+                    placeholder="Cari jalan atau lokasi rawan banjir..." 
+                    class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none"
+                    oninput="filterLocations()"
+                >
+            </div>
+            <button class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg font-medium transition-colors">
+                Cari
+            </button>
+        </div>
+    </div>
+
+    <!-- Card: Data Tabel -->
+    <div class="bg-white rounded-xl shadow-lg p-6 mb-12 card-hover">
+        <h3 class="text-xl font-semibold text-gray-800 mb-4">Data Titik Rawan Banjir</h3>
+        <div class="overflow-x-auto">
+            <table class="w-full text-sm">
+                <thead>
+                    <tr class="border-b border-gray-200">
+                        <th class="text-left py-3 px-4 font-semibold text-gray-700">No</th>
+                        <th class="text-left py-3 px-4 font-semibold text-gray-700">Nama Jalan/Lokasi</th>
+                        <th class="text-left py-3 px-4 font-semibold text-gray-700">Kecamatan</th>
+                        <th class="text-left py-3 px-4 font-semibold text-gray-700">Kelurahan</th>
+                        <th class="text-left py-3 px-4 font-semibold text-gray-700">Koordinat</th>
+                        <th class="text-left py-3 px-4 font-semibold text-gray-700">Tingkat Kerawanan</th>
+                    </tr>
+                </thead>
+                <tbody id="locationTable">
+                        <tbody id="locationTable">
+                            <tr class="border-b border-gray-100 hover:bg-gray-50">
+                            <td class="py-3 px-4">1</td>
+                            <td class="py-3 px-4 font-medium">Jalan Gerilya</td>
+                            <td class="py-3 px-4">Sungai Pinang</td>
+                            <td class="py-3 px-4">Sungai Pinang Dalam</td>
+                            <td class="py-3 px-4 text-gray-500">-0.486066, 117.165559</td>
+                            <td class="py-3 px-4"><span class="risk-medium px-2 py-1 rounded text-xs font-medium">Cukup Rawan</span></td>
+                        </tr>
+
+                        <tr class="border-b border-gray-100 hover:bg-gray-50">
+                            <td class="py-3 px-4">2</td>
+                            <td class="py-3 px-4 font-medium">Jalan Daman Huri</td>
+                            <td class="py-3 px-4">Sungai Pinang</td>
+                            <td class="py-3 px-4">Mugirejo</td>
+                            <td class="py-3 px-4 text-gray-500">-0.483399, 117.177473</td>
+                            <td class="py-3 px-4"><span class="risk-medium px-2 py-1 rounded text-xs font-medium">Cukup Rawan</span></td>
+                        </tr>
+
+                        <tr class="border-b border-gray-100 hover:bg-gray-50">
+                            <td class="py-3 px-4">3</td>
+                            <td class="py-3 px-4 font-medium">Jalan Rapak Indah</td>
+                            <td class="py-3 px-4">Sungai Kunjang</td>
+                            <td class="py-3 px-4">Loa Bakung</td>
+                            <td class="py-3 px-4 text-gray-500">-0.504217, 117.099644</td>
+                            <td class="py-3 px-4"><span class="risk-low px-2 py-1 rounded text-xs font-medium">Rawan</span></td>
+                        </tr>
+
+                        <tr class="border-b border-gray-100 hover:bg-gray-50">
+                            <td class="py-3 px-4">4</td>
+                            <td class="py-3 px-4 font-medium">Jalan Pangeran Suryanata</td>
+                            <td class="py-3 px-4">Samarinda Ulu</td>
+                            <td class="py-3 px-4">Bukit Pinang</td>
+                            <td class="py-3 px-4 text-gray-500">-0.474586, 117.123065</td>
+                            <td class="py-3 px-4"><span class="risk-low px-2 py-1 rounded text-xs font-medium">Rawan</span></td>
+                        </tr>
+
+                        <tr class="border-b border-gray-100 hover:bg-gray-50">
+                            <td class="py-3 px-4">5</td>
+                            <td class="py-3 px-4 font-medium">Jalan Ir Katamso</td>
+                            <td class="py-3 px-4">Sungai Pinang</td>
+                            <td class="py-3 px-4">Sungai Pinang Dalam</td>
+                            <td class="py-3 px-4 text-gray-500">-0.482039, 117.161475</td>
+                            <td class="py-3 px-4"><span class="risk-medium px-2 py-1 rounded text-xs font-medium">Cukup Rawan</span></td>
+                        </tr>
+
+                        <tr class="border-b border-gray-100 hover:bg-gray-50">
+                            <td class="py-3 px-4">6</td>
+                            <td class="py-3 px-4 font-medium">Jalan Mugirejo</td>
+                            <td class="py-3 px-4">Sungai Pinang</td>
+                            <td class="py-3 px-4">Mugirejo</td>
+                            <td class="py-3 px-4 text-gray-500">-0.468652, 117.193019</td>
+                            <td class="py-3 px-4"><span class="risk-medium px-2 py-1 rounded text-xs font-medium">Cukup Rawan</span></td>
+                        </tr>
+
+                        <tr class="border-b border-gray-100 hover:bg-gray-50">
+                            <td class="py-3 px-4">7</td>
+                            <td class="py-3 px-4 font-medium">Jalan Pasundan</td>
+                            <td class="py-3 px-4">Samarinda Ulu</td>
+                            <td class="py-3 px-4">Jawa</td>
+                            <td class="py-3 px-4 text-gray-500">-0.495316, 117.137380</td>
+                            <td class="py-3 px-4"><span class="risk-low px-2 py-1 rounded text-xs font-medium">Rawan</span></td>
+                        </tr>
+
+                        <tr class="border-b border-gray-100 hover:bg-gray-50">
+                            <td class="py-3 px-4">8</td>
+                            <td class="py-3 px-4 font-medium">Jalan Pramuka</td>
+                            <td class="py-3 px-4">Samarinda Utara</td>
+                            <td class="py-3 px-4">Gunung Kelua</td>
+                            <td class="py-3 px-4 text-gray-500">-0.464828, 117.155782</td>
+                            <td class="py-3 px-4"><span class="risk-low px-2 py-1 rounded text-xs font-medium">Rawan</span></td>
+                        </tr>
+
+                        <tr class="border-b border-gray-100 hover:bg-gray-50">
+                            <td class="py-3 px-4">9</td>
+                            <td class="py-3 px-4 font-medium">Jalan Perjuangan</td>
+                            <td class="py-3 px-4">Samarinda Utara</td>
+                            <td class="py-3 px-4">Sempaja Selatan</td>
+                            <td class="py-3 px-4 text-gray-500">-0.452668, 117.160812</td>
+                            <td class="py-3 px-4"><span class="risk-high px-2 py-1 rounded text-xs font-medium">Sangat Rawan</span></td>
+                        </tr>
+                        <tr class="border-b border-gray-100 hover:bg-gray-50">
+                            <td class="py-3 px-4">10</td>
+                            <td class="py-3 px-4 font-medium">Jalan Juanda</td>
+                            <td class="py-3 px-4">Samarinda Ulu</td>
+                            <td class="py-3 px-4">Air Hitam</td>
+                            <td class="py-3 px-4 text-gray-500">-0.473282, 117.138116</td>
+                            <td class="py-3 px-4"><span class="risk-low px-2 py-1 rounded text-xs font-medium">Rawan</span></td>
+                        </tr>
+
+                        <tr class="border-b border-gray-100 hover:bg-gray-50">
+                            <td class="py-3 px-4">11</td>
+                            <td class="py-3 px-4 font-medium">Jalan Cipto Mangunkusumo</td>
+                            <td class="py-3 px-4">Loa Janan Ilir</td>
+                            <td class="py-3 px-4">Sengkotek</td>
+                            <td class="py-3 px-4 text-gray-500">-0.556145, 117.086745</td>
+                            <td class="py-3 px-4"><span class="risk-high px-2 py-1 rounded text-xs font-medium">Sangat Rawan</span></td>
+                        </tr>
+
+                        <tr class="border-b border-gray-100 hover:bg-gray-50">
+                            <td class="py-3 px-4">12</td>
+                            <td class="py-3 px-4 font-medium">Jalan Untung Suropati</td>
+                            <td class="py-3 px-4">Sungai Kunjang</td>
+                            <td class="py-3 px-4">Karang Asam Ulu</td>
+                            <td class="py-3 px-4 text-gray-500">-0.519417, 117.116288</td>
+                            <td class="py-3 px-4"><span class="risk-low px-2 py-1 rounded text-xs font-medium">Rawan</span></td>
+                        </tr>
+
+                        <tr class="border-b border-gray-100 hover:bg-gray-50">
+                            <td class="py-3 px-4">13</td>
+                            <td class="py-3 px-4 font-medium">Jalan A.W. Sjahranie</td>
+                            <td class="py-3 px-4">Samarinda Utara</td>
+                            <td class="py-3 px-4">Sempaja Barat</td>
+                            <td class="py-3 px-4 text-gray-500">-0.450074, 117.153010</td>
+                            <td class="py-3 px-4"><span class="risk-high px-2 py-1 rounded text-xs font-medium">Sangat Rawan</span></td>
+                        </tr>
+
+                        <tr class="border-b border-gray-100 hover:bg-gray-50">
+                            <td class="py-3 px-4">14</td>
+                            <td class="py-3 px-4 font-medium">Jalan Kadrie Oening</td>
+                            <td class="py-3 px-4">Samarinda Ulu</td>
+                            <td class="py-3 px-4">Air Hitam</td>
+                            <td class="py-3 px-4 text-gray-500">-0.471998, 117.134153</td>
+                            <td class="py-3 px-4"><span class="risk-low px-2 py-1 rounded text-xs font-medium">Rawan</span></td>
+                        </tr>
+
+                        <tr class="border-b border-gray-100 hover:bg-gray-50">
+                            <td class="py-3 px-4">15</td>
+                            <td class="py-3 px-4 font-medium">Jalan MT Haryono</td>
+                            <td class="py-3 px-4">Samarinda Ulu</td>
+                            <td class="py-3 px-4">Air Putih</td>
+                            <td class="py-3 px-4 text-gray-500">-0.487861, 117.121485</td>
+                            <td class="py-3 px-4"><span class="risk-low px-2 py-1 rounded text-xs font-medium">Rawan</span></td>
+                        </tr>
+
+                        <tr class="border-b border-gray-100 hover:bg-gray-50">
+                            <td class="py-3 px-4">16</td>
+                            <td class="py-3 px-4 font-medium">Jalan Pangeran Antasari</td>
+                            <td class="py-3 px-4">Samarinda Ulu</td>
+                            <td class="py-3 px-4">Air Putih</td>
+                            <td class="py-3 px-4 text-gray-500">-0.492088, 117.127607</td>
+                            <td class="py-3 px-4"><span class="risk-low px-2 py-1 rounded text-xs font-medium">Rawan</span></td>
+                        </tr>
+
+                        <tr class="border-b border-gray-100 hover:bg-gray-50">
+                            <td class="py-3 px-4">17</td>
+                            <td class="py-3 px-4 font-medium">Jalan Mujahidin</td>
+                            <td class="py-3 px-4">Sungai Kunjang</td>
+                            <td class="py-3 px-4">Karang Asam Ulu</td>
+                            <td class="py-3 px-4 text-gray-500">-0.517731, 117.143291</td>
+                            <td class="py-3 px-4"><span class="risk-low px-2 py-1 rounded text-xs font-medium">Rawan</span></td>
+                        </tr>
+
+                        <tr class="border-b border-gray-100 hover:bg-gray-50">
+                            <td class="py-3 px-4">18</td>
+                            <td class="py-3 px-4 font-medium">Jalan KH Harun Nafsi</td>
+                            <td class="py-3 px-4">Loa Janan Ilir</td>
+                            <td class="py-3 px-4">Rapak Dalam</td>
+                            <td class="py-3 px-4 text-gray-500">-0.516079, 117.143649</td>
+                            <td class="py-3 px-4"><span class="risk-high px-2 py-1 rounded text-xs font-medium">Sangat Rawan</span></td>
+                        </tr>
+
+                        <tr class="border-b border-gray-100 hover:bg-gray-50">
+                            <td class="py-3 px-4">19</td>
+                            <td class="py-3 px-4 font-medium">Jalan Siti Aisyah</td>
+                            <td class="py-3 px-4">Samarinda Ulu</td>
+                            <td class="py-3 px-4">Teluk Lerong Ilir</td>
+                            <td class="py-3 px-4 text-gray-500">-0.495955, 117.134578</td>
+                            <td class="py-3 px-4"><span class="risk-low px-2 py-1 rounded text-xs font-medium">Rawan</span></td>
+                        </tr>
+                        <tr class="border-b border-gray-100 hover:bg-gray-50">
+                            <td class="py-3 px-4">21</td>
+                            <td class="py-3 px-4 font-medium">Jalan Bung Tomo</td>
+                            <td class="py-3 px-4">Samarinda Seberang</td>
+                            <td class="py-3 px-4">Sungai Keledang</td>
+                            <td class="py-3 px-4 text-gray-500">-0.5128, 117.1331</td>
+                            <td class="py-3 px-4"><span class="risk-low px-2 py-1 rounded text-xs font-medium">Rawan</span></td>
+                        </tr>
+                        <tr class="border-b border-gray-100 hover:bg-gray-50">
+                            <td class="py-3 px-4">22</td>
+                            <td class="py-3 px-4 font-medium">Jalan Lambung Mangkurat</td>
+                            <td class="py-3 px-4">Samarinda Ilir</td>
+                            <td class="py-3 px-4">Sungai Pelita</td>
+                            <td class="py-3 px-4 text-gray-500">-0.4881, 117.1622</td>
+                            <td class="py-3 px-4"><span class="risk-high px-2 py-1 rounded text-xs font-medium">Sangat Rawan</span></td>
+                        </tr>
+                        <tr class="border-b border-gray-100 hover:bg-gray-50">
+                            <td class="py-3 px-4">23</td>
+                            <td class="py-3 px-4 font-medium">Jalan Kemerdekaan</td>
+                            <td class="py-3 px-4">Sungai Pinang</td>
+                            <td class="py-3 px-4">Sungai Pinang Dalam</td>
+                            <td class="py-3 px-4 text-gray-500">-0.4883, 117.1649</td>
+                            <td class="py-3 px-4"><span class="risk-medium px-2 py-1 rounded text-xs font-medium">Cukup Rawan</span></td>
+                        </tr>
+                        <tr class="border-b border-gray-100 hover:bg-gray-50">
+                            <td class="py-3 px-4">24</td>
+                            <td class="py-3 px-4 font-medium">Jalan Gajah Mada</td>
+                            <td class="py-3 px-4">Samarinda Kota</td>
+                            <td class="py-3 px-4">Pasar Pagi</td>
+                            <td class="py-3 px-4 text-gray-500">-0.5016, 117.1391</td>
+                            <td class="py-3 px-4"><span class="risk-low px-2 py-1 rounded text-xs font-medium">Rawan</span></td>
+                        </tr>
+                        <tr class="border-b border-gray-100 hover:bg-gray-50">
+                            <td class="py-3 px-4">25</td>
+                            <td class="py-3 px-4 font-medium">Jalan Sultan Hasanuddin</td>
+                            <td class="py-3 px-4">Samarinda Seberang</td>
+                            <td class="py-3 px-4">Baqa</td>
+                            <td class="py-3 px-4 text-gray-500">-0.5110, 117.1424</td>
+                            <td class="py-3 px-4"><span class="risk-low px-2 py-1 rounded text-xs font-medium">Rawan</span></td>
+                        </tr>
+                        <tr class="border-b border-gray-100 hover:bg-gray-50">
+                            <td class="py-3 px-4">26</td>
+                            <td class="py-3 px-4 font-medium">Jalan HAM Rifaddin</td>
+                            <td class="py-3 px-4">Loa Janan Ilir</td>
+                            <td class="py-3 px-4">Harapan Baru</td>
+                            <td class="py-3 px-4 text-gray-500">-0.5592, 117.1114</td>
+                            <td class="py-3 px-4"><span class="risk-high px-2 py-1 rounded text-xs font-medium">Sangat Rawan</span></td>
+                        </tr>
+                        <tr class="border-b border-gray-100 hover:bg-gray-50">
+                            <td class="py-3 px-4">27</td>
+                            <td class="py-3 px-4 font-medium">Jalan APT Pranoto</td>
+                            <td class="py-3 px-4">Samarinda Seberang</td>
+                            <td class="py-3 px-4">Sungai Keledang</td>
+                            <td class="py-3 px-4 text-gray-500">-0.5260, 117.1302</td>
+                            <td class="py-3 px-4"><span class="risk-low px-2 py-1 rounded text-xs font-medium">Rawan</span></td>
+                        </tr>
+                        <tr class="border-b border-gray-100 hover:bg-gray-50">
+                            <td class="py-3 px-4">28</td>
+                            <td class="py-3 px-4 font-medium">Jalan Simpang Pasir</td>
+                            <td class="py-3 px-4">Palaran</td>
+                            <td class="py-3 px-4">Simpang Pasir</td>
+                            <td class="py-3 px-4 text-gray-500">-0.5661, 117.1459</td>
+                            <td class="py-3 px-4"><span class="risk-low px-2 py-1 rounded text-xs font-medium">Rawan</span></td>
+                        </tr>
+                        <tr class="border-b border-gray-100 hover:bg-gray-50">
+                            <td class="py-3 px-4">29</td>
+                            <td class="py-3 px-4 font-medium">Jalan Parikesit</td>
+                            <td class="py-3 px-4">Palaran</td>
+                            <td class="py-3 px-4">Rawa Makmur</td>
+                            <td class="py-3 px-4 text-gray-500">-0.5792, 117.1830</td>
+                            <td class="py-3 px-4"><span class="risk-low px-2 py-1 rounded text-xs font-medium">Rawan</span></td>
+                        </tr>
+                        <tr class="border-b border-gray-100 hover:bg-gray-50">
+                            <td class="py-3 px-4">30</td>
+                            <td class="py-3 px-4 font-medium">Jalan Anjasmoro</td>
+                            <td class="py-3 px-4">Palaran</td>
+                            <td class="py-3 px-4">Rawa Makmur</td>
+                            <td class="py-3 px-4 text-gray-500">-0.5754, 117.1813</td>
+                            <td class="py-3 px-4"><span class="risk-low px-2 py-1 rounded text-xs font-medium">Rawan</span></td>
+                        </tr>
+                        <tr class="border-b border-gray-100 hover:bg-gray-50">
+                            <td class="py-3 px-4">31</td>
+                            <td class="py-3 px-4 font-medium">Jalan Ampera</td>
+                            <td class="py-3 px-4">Palaran</td>
+                            <td class="py-3 px-4">Rawa Makmur</td>
+                            <td class="py-3 px-4 text-gray-500">-0.5738, 117.1822</td>
+                            <td class="py-3 px-4"><span class="risk-low px-2 py-1 rounded text-xs font-medium">Rawan</span></td>
+                        </tr>
+                        <tr class="border-b border-gray-100 hover:bg-gray-50">
+                            <td class="py-3 px-4">32</td>
+                            <td class="py-3 px-4 font-medium">Jalan Trikora</td>
+                            <td class="py-3 px-4">Palaran</td>
+                            <td class="py-3 px-4">Handil Bakti</td>
+                            <td class="py-3 px-4 text-gray-500">-0.5549, 117.1657</td>
+                            <td class="py-3 px-4"><span class="risk-low px-2 py-1 rounded text-xs font-medium">Rawan</span></td>
+                        </tr>
+                        <tr class="border-b border-gray-100 hover:bg-gray-50">
+                            <td class="py-3 px-4">33</td>
+                            <td class="py-3 px-4 font-medium">Jalan KS Tubun Dalam</td>
+                            <td class="py-3 px-4">Samarinda Ulu</td>
+                            <td class="py-3 px-4">Dadi Mulya</td>
+                            <td class="py-3 px-4 text-gray-500">-0.4908, 117.1398</td>
+                            <td class="py-3 px-4"><span class="risk-low px-2 py-1 rounded text-xs font-medium">Rawan</span></td>
+                        </tr>
+                        <tr class="border-b border-gray-100 hover:bg-gray-50">
+                            <td class="py-3 px-4">34</td>
+                            <td class="py-3 px-4 font-medium">Jalan DI Panjaitan</td>
+                            <td class="py-3 px-4">Samarinda Utara</td>
+                            <td class="py-3 px-4">Mugirejo</td>
+                            <td class="py-3 px-4 text-gray-500">-0.4545, 117.1907</td>
+                            <td class="py-3 px-4"><span class="risk-medium px-2 py-1 rounded text-xs font-medium">Cukup Rawan</span></td>
+                        </tr>
+                        <tr class="border-b border-gray-100 hover:bg-gray-50">
+                            <td class="py-3 px-4">35</td>
+                            <td class="py-3 px-4 font-medium">Jalan Remaja</td>
+                            <td class="py-3 px-4">Sungai Pinang</td>
+                            <td class="py-3 px-4">Temindung Permai</td>
+                            <td class="py-3 px-4 text-gray-500">-0.4735, 117.1656</td>
+                            <td class="py-3 px-4"><span class="risk-medium px-2 py-1 rounded text-xs font-medium">Cukup Rawan</span></td>
+                        </tr>
+                        <tr class="border-b border-gray-100 hover:bg-gray-50">
+                            <td class="py-3 px-4">36</td>
+                            <td class="py-3 px-4 font-medium">Jalan Merapi</td>
+                            <td class="py-3 px-4">Samarinda Ulu</td>
+                            <td class="py-3 px-4">Jawa</td>
+                            <td class="py-3 px-4 text-gray-500">-0.4381, 117.2201</td>
+                            <td class="py-3 px-4"><span class="risk-low px-2 py-1 rounded text-xs font-medium">Rawan</span></td>
+                        </tr>
+                        <tr class="border-b border-gray-100 hover:bg-gray-50">
+                            <td class="py-3 px-4">37</td>
+                            <td class="py-3 px-4 font-medium">Jalan Merbabu</td>
+                            <td class="py-3 px-4">Samarinda Ulu</td>
+                            <td class="py-3 px-4">Jawa</td>
+                            <td class="py-3 px-4 text-gray-500">-0.4380, 117.2187</td>
+                            <td class="py-3 px-4"><span class="risk-low px-2 py-1 rounded text-xs font-medium">Rawan</span></td>
+                        </tr>
+                        <tr class="border-b border-gray-100 hover:bg-gray-50">
+                            <td class="py-3 px-4">38</td>
+                            <td class="py-3 px-4 font-medium">Jalan Wahid Hasyim I</td>
+                            <td class="py-3 px-4">Samarinda Utara</td>
+                            <td class="py-3 px-4">Sempaja Selatan</td>
+                            <td class="py-3 px-4 text-gray-500">-0.4515, 117.1531</td>
+                            <td class="py-3 px-4"><span class="risk-high px-2 py-1 rounded text-xs font-medium">Sangat Rawan</span></td>
+                        </tr>
+                        <tr class="border-b border-gray-100 hover:bg-gray-50">
+                            <td class="py-3 px-4">39</td>
+                            <td class="py-3 px-4 font-medium">Jalan M Yamin</td>
+                            <td class="py-3 px-4">Samarinda Ulu</td>
+                            <td class="py-3 px-4">Gunung Kelua</td>
+                            <td class="py-3 px-4 text-gray-500">-0.4704, 117.1474</td>
+                            <td class="py-3 px-4"><span class="risk-low px-2 py-1 rounded text-xs font-medium">Rawan</span></td>
+                        </tr>
+                        <tr class="border-b border-gray-100 hover:bg-gray-50">
+                            <td class="py-3 px-4">40</td>
+                            <td class="py-3 px-4 font-medium">Jalan MJ Sutoyo</td>
+                            <td class="py-3 px-4">Sungai Pinang</td>
+                            <td class="py-3 px-4">Sungai Pinang Dalam</td>
+                            <td class="py-3 px-4 text-gray-500">-0.4751, 117.1647</td>
+                            <td class="py-3 px-4"><span class="risk-medium px-2 py-1 rounded text-xs font-medium">Cukup Rawan</span></td>
+                        </tr>
+                        <tr class="border-b border-gray-100 hover:bg-gray-50">
+                            <td class="py-3 px-4">41</td>
+                            <td class="py-3 px-4 font-medium">Simpang Air Hitam</td>
+                            <td class="py-3 px-4">Samarinda Ulu</td>
+                            <td class="py-3 px-4">Air Hitam</td>
+                            <td class="py-3 px-4 text-gray-500">-0.4725, 117.1386</td>
+                            <td class="py-3 px-4"><span class="risk-low px-2 py-1 rounded text-xs font-medium">Rawan</span></td>
+                        </tr>
+                        <tr class="border-b border-gray-100 hover:bg-gray-50">
+                            <td class="py-3 px-4">42</td>
+                            <td class="py-3 px-4 font-medium">Simpang Mugirejo</td>
+                            <td class="py-3 px-4">Sungai Pinang</td>
+                            <td class="py-3 px-4">Mugirejo</td>
+                            <td class="py-3 px-4 text-gray-500">-0.4616, 117.1858</td>
+                            <td class="py-3 px-4"><span class="risk-medium px-2 py-1 rounded text-xs font-medium">Cukup Rawan</span></td>
+                        </tr>
+                        <tr class="border-b border-gray-100 hover:bg-gray-50">
+                            <td class="py-3 px-4">43</td>
+                            <td class="py-3 px-4 font-medium">Simpang Alaya</td>
+                            <td class="py-3 px-4">Samarinda Utara</td>
+                            <td class="py-3 px-4">Sempaja Selatan</td>
+                            <td class="py-3 px-4 text-gray-500">-0.4623, 117.1760</td>
+                            <td class="py-3 px-4"><span class="risk-high px-2 py-1 rounded text-xs font-medium">Sangat Rawan</span></td>
+                        </tr>
+                        <tr class="border-b border-gray-100 hover:bg-gray-50">
+                            <td class="py-3 px-4">44</td>
+                            <td class="py-3 px-4 font-medium">Simpang Lembuswana</td>
+                            <td class="py-3 px-4">Samarinda Ulu</td>
+                            <td class="py-3 px-4">Gunung Kelua</td>
+                            <td class="py-3 px-4 text-gray-500">-0.4755, 117.1462</td>
+                            <td class="py-3 px-4"><span class="risk-low px-2 py-1 rounded text-xs font-medium">Rawan</span></td>
+                        </tr>
+                        <tr class="border-b border-gray-100 hover:bg-gray-50">
+                            <td class="py-3 px-4">45</td>
+                            <td class="py-3 px-4 font-medium">Simpang Vorvoo</td>
+                            <td class="py-3 px-4">Samarinda Ulu</td>
+                            <td class="py-3 px-4">Gunung Kelua</td>
+                            <td class="py-3 px-4 text-gray-500">-0.4744, 117.1444</td>
+                            <td class="py-3 px-4"><span class="risk-low px-2 py-1 rounded text-xs font-medium">Rawan</span></td>
+                        </tr>
+                        <tr class="border-b border-gray-100 hover:bg-gray-50">
+                            <td class="py-3 px-4">46</td>
+                            <td class="py-3 px-4 font-medium">Simpang Pasundan</td>
+                            <td class="py-3 px-4">Samarinda Ulu</td>
+                            <td class="py-3 px-4">Jawa</td>
+                            <td class="py-3 px-4 text-gray-500">-0.4919, 117.1389</td>
+                            <td class="py-3 px-4"><span class="risk-low px-2 py-1 rounded text-xs font-medium">Rawan</span></td>
+                        </tr>
+                        <tr class="border-b border-gray-100 hover:bg-gray-50">
+                            <td class="py-3 px-4">47</td>
+                            <td class="py-3 px-4 font-medium">Simpang Gunung Kapur</td>
+                            <td class="py-3 px-4">Samarinda Utara</td>
+                            <td class="py-3 px-4">Lempake</td>
+                            <td class="py-3 px-4 text-gray-500">-0.4399, 117.1953</td>
+                            <td class="py-3 px-4"><span class="risk-high px-2 py-1 rounded text-xs font-medium">Sangat Rawan</span></td>
+                        </tr>
+                    <!-- data isi -->
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+</div> <!-- end max-w-7xl -->
+
+
+    </div> <!-- end padding -->
+
+    <!-- Footer with Report Form -->
+    <footer id="contact" class="gradient-bg text-white py-12">
+        <div class="max-w-4xl mx-auto px-6">
+            <div class="text-center mb-8">
+                <h3 class="text-2xl font-bold mb-2">Laporkan Titik Banjir Baru</h3>
+                <p class="text-blue-100">Bantu kami memperbarui data dengan melaporkan titik banjir atau keluhan terkait banjir di Samarinda</p>
+            </div>
+            
+            <form class="bg-white bg-opacity-10 backdrop-filter backdrop-blur-lg rounded-xl p-8" onsubmit="submitReport(event)">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                    <div>
+                        <label class="block text-sm font-medium mb-2">Nama Lengkap</label>
+                        <input type="text" required class="w-full px-4 py-3 bg-white bg-opacity-20 border border-white border-opacity-30 rounded-lg text-white placeholder-blue-100 focus:ring-2 focus:ring-white focus:ring-opacity-50 outline-none" placeholder="Masukkan nama Anda">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium mb-2">No. Telepon</label>
+                        <input type="tel" required class="w-full px-4 py-3 bg-white bg-opacity-20 border border-white border-opacity-30 rounded-lg text-white placeholder-blue-100 focus:ring-2 focus:ring-white focus:ring-opacity-50 outline-none" placeholder="Contoh: 08123456789">
+                    </div>
+                </div>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                    <div>
+                        <label class="block text-sm font-medium mb-2">Lokasi/Jalan</label>
+                        <input type="text" required class="w-full px-4 py-3 bg-white bg-opacity-20 border border-white border-opacity-30 rounded-lg text-white placeholder-blue-100 focus:ring-2 focus:ring-white focus:ring-opacity-50 outline-none" placeholder="Nama jalan atau lokasi">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium mb-2">Kecamatan</label>
+                        <select required class="w-full px-4 py-3 bg-white bg-opacity-20 border border-white border-opacity-30 rounded-lg text-white focus:ring-2 focus:ring-white focus:ring-opacity-50 outline-none">
+                            <option value="" class="text-gray-800">Pilih Kecamatan</option>
+                            <option value="sungai-kunjang" class="text-gray-800">Sungai Kunjang</option>
+                            <option value="sambutan" class="text-gray-800">Sambutan</option>
+                            <option value="samarinda-ulu" class="text-gray-800">Samarinda Ulu</option>
+                            <option value="palaran" class="text-gray-800">Palaran</option>
+                            <option value="loa-janan-ilir" class="text-gray-800">Loa Janan Ilir</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <div class="mb-6">
+                    <label class="block text-sm font-medium mb-2">Jenis Laporan</label>
+                    <select required class="w-full px-4 py-3 bg-white bg-opacity-20 border border-white border-opacity-30 rounded-lg text-white focus:ring-2 focus:ring-white focus:ring-opacity-50 outline-none">
+                        <option value="" class="text-gray-800">Pilih jenis laporan</option>
+                        <option value="titik-baru" class="text-gray-800">Titik Banjir Baru</option>
+                        <option value="keluhan" class="text-gray-800">Keluhan Banjir</option>
+                        <option value="perbaikan-data" class="text-gray-800">Perbaikan Data</option>
+                    </select>
+                </div>
+                
+                <div class="mb-6">
+                    <label class="block text-sm font-medium mb-2">Deskripsi Laporan</label>
+                    <textarea required rows="4" class="w-full px-4 py-3 bg-white bg-opacity-20 border border-white border-opacity-30 rounded-lg text-white placeholder-blue-100 focus:ring-2 focus:ring-white focus:ring-opacity-50 outline-none resize-none" placeholder="Jelaskan detail lokasi banjir, tingkat kerusakan, atau keluhan Anda..."></textarea>
+                </div>
+                
+                <button type="submit" class="w-full bg-white text-blue-600 font-semibold py-3 px-6 rounded-lg hover:bg-blue-50 transition-colors">
+                    Kirim Laporan
+                </button>
+            </form>
+            
+            <div class="text-center mt-8 text-blue-100">
+                <p>&copy; 2024 Sistem Informasi Geografis Titik Rawan Banjir Samarinda. Semua hak dilindungi.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Fullscreen Map Modal -->
+    <div id="fullscreenModal" class="fixed inset-0 bg-black bg-opacity-75 z-50 hidden">
+        <div class="absolute inset-4 bg-white rounded-lg overflow-hidden">
+            <div class="flex justify-between items-center p-4 border-b">
+                <h3 class="text-xl font-semibold">Peta Fullscreen - Titik Rawan Banjir Samarinda</h3>
+                <button onclick="closeFullscreenMap()" class="text-gray-500 hover:text-gray-700 text-2xl">&times;</button>
+            </div>
+            <div id="fullscreenMap" class="w-full h-full"></div>
+        </div>
+    </div>
+
+    <script>
+        // Initialize main map
+        let map = L.map('map').setView([-0.4985, 117.1436], 12);
+        let fullscreenMapInstance = null;
+
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '© OpenStreetMap contributors'
+        }).addTo(map);
+
+        // Sample flood risk points
+        const floodPoints = [
+            {lat: -0.4985, lng: 117.1436, name: 'Jl. Pramuka', risk: 'high'},
+            {lat: -0.4892, lng: 117.1253, name: 'Jl. Kesuma Bangsa', risk: 'high'},
+            {lat: -0.5018, lng: 117.1234, name: 'Jl. Mulawarman', risk: 'medium'},
+            {lat: -0.4756, lng: 117.1567, name: 'Jl. Pangeran Antasari', risk: 'medium'},
+            {lat: -0.4623, lng: 117.1789, name: 'Jl. Cipto Mangunkusumo', risk: 'low'}
+        ];
+
+        // Add markers to map
+        floodPoints.forEach(point => {
+            let color = point.risk === 'high' ? 'red' : point.risk === 'medium' ? 'orange' : 'green';
+            let marker = L.circleMarker([point.lat, point.lng], {
+                color: color,
+                fillColor: color,
+                fillOpacity: 0.7,
+                radius: 8
+            }).addTo(map);
+            
+            marker.bindPopup(`<b>${point.name}</b><br>Tingkat Risiko: ${point.risk === 'high' ? 'Tinggi' : point.risk === 'medium' ? 'Sedang' : 'Rendah'}`);
+        });
+
+        // Navigation functions
+        function scrollToSection(sectionId) {
+            document.getElementById(sectionId).scrollIntoView({
+                behavior: 'smooth'
+            });
+        }
+
+        function openFullscreenMap() {
+            document.getElementById('fullscreenModal').classList.remove('hidden');
+            
+            setTimeout(() => {
+                if (!fullscreenMapInstance) {
+                    fullscreenMapInstance = L.map('fullscreenMap').setView([-0.4985, 117.1436], 12);
+                    
+                    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                        attribution: '© OpenStreetMap contributors'
+                    }).addTo(fullscreenMapInstance);
+
+                    // Add markers to fullscreen map
+                    floodPoints.forEach(point => {
+                        let color = point.risk === 'high' ? 'red' : point.risk === 'medium' ? 'orange' : 'green';
+                        let marker = L.circleMarker([point.lat, point.lng], {
+                            color: color,
+                            fillColor: color,
+                            fillOpacity: 0.7,
+                            radius: 10
+                        }).addTo(fullscreenMapInstance);
+                        
+                        marker.bindPopup(`<b>${point.name}</b><br>Tingkat Risiko: ${point.risk === 'high' ? 'Tinggi' : point.risk === 'medium' ? 'Sedang' : 'Rendah'}`);
+                    });
+                }
+                fullscreenMapInstance.invalidateSize();
+            }, 100);
+        }
+
+        function closeFullscreenMap() {
+            document.getElementById('fullscreenModal').classList.add('hidden');
+        }
+
+        // Search functionality
+        const originalTableData = [
+            {no: 1, jalan: 'Jl. Pramuka', kecamatan: 'Sungai Kunjang', kelurahan: 'Karang Mumus', risiko: 'Tinggi', koordinat: '-0.4985, 117.1436'},
+            {no: 2, jalan: 'Jl. Kesuma Bangsa', kecamatan: 'Sambutan', kelurahan: 'Sambutan', risiko: 'Tinggi', koordinat: '-0.4892, 117.1253'},
+            {no: 3, jalan: 'Jl. Mulawarman', kecamatan: 'Samarinda Ulu', kelurahan: 'Sidodadi', risiko: 'Sedang', koordinat: '-0.5018, 117.1234'},
+            {no: 4, jalan: 'Jl. Pangeran Antasari', kecamatan: 'Palaran', kelurahan: 'Rawa Makmur', risiko: 'Sedang', koordinat: '-0.4756, 117.1567'},
+            {no: 5, jalan: 'Jl. Cipto Mangunkusumo', kecamatan: 'Loa Janan Ilir', kelurahan: 'Loa Bakung', risiko: 'Rendah', koordinat: '-0.4623, 117.1789'}
+        ];
+
+        function filterLocations() {
+            const searchTerm = document.getElementById('searchInput').value.toLowerCase();
+            const tableBody = document.getElementById('locationTable');
+            
+            const filteredData = originalTableData.filter(item => 
+                item.jalan.toLowerCase().includes(searchTerm) ||
+                item.kecamatan.toLowerCase().includes(searchTerm) ||
+                item.kelurahan.toLowerCase().includes(searchTerm)
+            );
+            
+            tableBody.innerHTML = filteredData.map(item => {
+                const riskClass = item.risiko === 'Tinggi' ? 'risk-high' : 
+                                 item.risiko === 'Sedang' ? 'risk-medium' : 'risk-low';
+                
+                return `
+                    <tr class="border-b border-gray-100 hover:bg-gray-50">
+                        <td class="py-3 px-4">${item.no}</td>
+                        <td class="py-3 px-4 font-medium">${item.jalan}</td>
+                        <td class="py-3 px-4">${item.kecamatan}</td>
+                        <td class="py-3 px-4">${item.kelurahan}</td>
+                        <td class="py-3 px-4"><span class="${riskClass} px-2 py-1 rounded text-xs font-medium">${item.risiko}</span></td>
+                        <td class="py-3 px-4 text-gray-500">${item.koordinat}</td>
+                    </tr>
+                `;
+            }).join('');
+        }
+
+        // Form submission
+        function submitReport(event) {
+            event.preventDefault();
+            alert('Terima kasih! Laporan Anda telah berhasil dikirim. Tim kami akan menindaklanjuti dalam 1-2 hari kerja.');
+            event.target.reset();
+        }
+
+        // Close modal when clicking outside
+        document.getElementById('fullscreenModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeFullscreenMap();
+            }
+        });
+    </script>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'98ac53cb35b18982',t:'MTc1OTgyODg3Ni4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>
